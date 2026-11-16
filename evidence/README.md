@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** All five WEB-001 screenshots from **16 November 2026** have been **uploaded and linked** in this private repository. The WEB-002 and WEB-003 screenshots remain pending separate anonymization.
+**Current status:** All five WEB-001 screenshots from **16 November 2026** have been **uploaded and linked** in this private repository. Two WEB-002 screenshots are now **prepared locally and awaiting upload**; WEB-003 screenshots still require anonymization.
 
 ## Evidence inventory and upload status
 
@@ -11,8 +11,8 @@
 | [`03-sqli-sqlite-error.png`](03-sqli-sqlite-error.png) | Malformed input and SQLite error | Uploaded and linked |
 | [`04-sqli-true-condition.png`](04-sqli-true-condition.png) | True-condition SQL injection test | Uploaded and linked |
 | [`05-sqli-false-condition.png`](05-sqli-false-condition.png) | False-condition SQL injection test | Uploaded and linked |
-| `06-authenticated-user-response.png` | Authenticated user property names, secrets redacted | Not prepared; credential redaction pending |
-| `07-unauthenticated-401.png` | `/rest/saveLoginIp` rejected without authentication | Not prepared |
+| `06-authenticated-user-response.png` | Authenticated user property names; token and sensitive values redacted | Prepared locally · upload pending |
+| `07-unauthenticated-401.png` | `/rest/saveLoginIp` rejected without authentication | Prepared locally · upload pending |
 | `08-cross-user-address-rejected.png` | User A blocked from B's address | Not prepared; credential redaction pending |
 | `09-owner-address-allowed.png` | User B successfully accesses own address | Not prepared; credential and contact redaction pending |
 
