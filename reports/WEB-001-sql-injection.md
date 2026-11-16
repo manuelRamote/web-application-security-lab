@@ -41,4 +41,4 @@ No exploitation against a live service was performed.
 
 ## Evidence status
 
-Relevant Burp screenshots were reviewed during the working session but **have not been uploaded to the repository**. Upload sanitized baseline, SQL error, true-condition and false-condition screenshots only after removing credentials, cookies and any unrelated identifying information.
+Five screenshots from the 16 November 2026 Burp session have been cropped, inspected and prepared locally: `01-http-history-baseline.png`, `02-repeater-search-normal.png`, `03-sqli-sqlite-error.png`, `04-sqli-true-condition.png` and `05-sqli-false-condition.png`. **These are not yet uploaded to GitHub**; they will be linked here after upload and verification. The images show request and response details without session tokens or cookies.
