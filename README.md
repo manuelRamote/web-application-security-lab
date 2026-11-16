@@ -8,7 +8,7 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Work in progress. Evidence screenshots are being reviewed and sanitized before upload. No production systems or third-party accounts are tested.
+> **Publication status:** Work in progress. WEB-001's five sanitized evidence screenshots are uploaded and linked below; authenticated-session screenshots for WEB-002 and WEB-003 are still pending review. No production systems or third-party accounts are tested.
 
 ## Investigation summary
 
@@ -57,6 +57,22 @@ Read the [laboratory setup](docs/lab-setup.md), [test methodology](docs/testing-
 - Two controlled SQL predicates, `AND 1=1` and `AND 1=2`, yielded product results and an empty `data` array, respectively. The behavior was independently reproduced.
 
 This evidence supports a **confirmed SQL injection** in the local training application. It does **not** establish data exfiltration, account compromise or privilege escalation.
+
+**Evidence at a glance:**
+
+| Control or test | Screenshot | Response |
+| --- | --- | --- |
+| Initial HTTP baseline | [01 — HTTP history](evidence/01-http-history-baseline.png) | `200 OK` |
+| Normal search | [02 — `q=apple`](evidence/02-repeater-search-normal.png) | `200 OK`, products |
+| Malformed input | [03 — SQLite error](evidence/03-sqli-sqlite-error.png) | `500`, SQL details |
+| True condition | [04 — `AND 1=1`](evidence/04-sqli-true-condition.png) | `200 OK`, products |
+| False condition | [05 — `AND 1=2`](evidence/05-sqli-false-condition.png) | `200 OK`, empty array |
+
+![SQL error response captured in Burp Repeater](evidence/03-sqli-sqlite-error.png)
+
+![SQL true/false test: empty JSON response with the false predicate](evidence/05-sqli-false-condition.png)
+
+For complete evidence and interpretation, see [WEB-001's technical report](reports/WEB-001-sql-injection.md).
 
 ### WEB-002 — User attributes in an authenticated API response
 
