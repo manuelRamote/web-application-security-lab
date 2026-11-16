@@ -1,0 +1,17 @@
+# Proxy traffic and project files may contain auth tokens and credentials
+*.burp
+*.burpsuite
+*.har
+*.pcap
+*.pcapng
+*.log
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Editor and temporary files
+.DS_Store
+*.swp
+*.tmp
