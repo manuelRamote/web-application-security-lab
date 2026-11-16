@@ -1,22 +1,22 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** Five WEB-001 screenshots (baseline, normal query, SQLite error, true and false SQL conditions) have been **cropped and prepared locally** from the captured Burp session on 16 November 2026. **They are not yet committed to GitHub.** The remaining WEB-002/WEB-003 screenshots are pending separate anonymization.
+**Current status:** All five WEB-001 screenshots from **16 November 2026** have been **uploaded and linked** in this private repository. The WEB-002 and WEB-003 screenshots remain pending separate anonymization.
 
 ## Evidence inventory and upload status
 
 | File | Evidence | Status |
 | --- | --- | --- |
-| `01-http-history-baseline.png` | Juice Shop request/response in Burp Proxy | Locally prepared · upload pending |
-| `02-repeater-search-normal.png` | Normal `q=apple` search | Locally prepared · upload pending |
-| `03-sqli-sqlite-error.png` | Malformed input and SQLite error | Locally prepared · upload pending |
-| `04-sqli-true-condition.png` | True-condition SQL injection test | Locally prepared · upload pending |
-| `05-sqli-false-condition.png` | False-condition SQL injection test | Locally prepared · upload pending |
+| [`01-http-history-baseline.png`](01-http-history-baseline.png) | Juice Shop request/response in Burp Proxy | Uploaded and linked |
+| [`02-repeater-search-normal.png`](02-repeater-search-normal.png) | Normal `q=apple` search | Uploaded and linked |
+| [`03-sqli-sqlite-error.png`](03-sqli-sqlite-error.png) | Malformed input and SQLite error | Uploaded and linked |
+| [`04-sqli-true-condition.png`](04-sqli-true-condition.png) | True-condition SQL injection test | Uploaded and linked |
+| [`05-sqli-false-condition.png`](05-sqli-false-condition.png) | False-condition SQL injection test | Uploaded and linked |
 | `06-authenticated-user-response.png` | Authenticated user property names, secrets redacted | Not prepared; credential redaction pending |
 | `07-unauthenticated-401.png` | `/rest/saveLoginIp` rejected without authentication | Not prepared |
 | `08-cross-user-address-rejected.png` | User A blocked from B's address | Not prepared; credential redaction pending |
 | `09-owner-address-allowed.png` | User B successfully accesses own address | Not prepared; credential and contact redaction pending |
 
-The first five prepared PNGs contain only the visible unauthenticated local traffic and have been inspected for token and cookie exposure. Verify each PNG again before the repository is made public.
+The five WEB-001 PNGs show the local unauthenticated tests and were inspected for token or cookie exposure during cropping. Perform a final release review of every image before changing repository visibility.
 
 ## Privacy checklist
 
