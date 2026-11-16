@@ -39,6 +39,40 @@ No exploitation against a live service was performed.
 3. Use standardized error handling; return a generic client error and log detailed database failures only in protected server-side logs.
 4. Add regression tests for normal input, malformed syntax and SQL boolean-expression attempts.
 
-## Evidence status
+## Burp Suite screenshots — verified evidence
 
-Five screenshots from the 16 November 2026 Burp session have been cropped, inspected and prepared locally: `01-http-history-baseline.png`, `02-repeater-search-normal.png`, `03-sqli-sqlite-error.png`, `04-sqli-true-condition.png` and `05-sqli-false-condition.png`. **These are not yet uploaded to GitHub**; they will be linked here after upload and verification. The images show request and response details without session tokens or cookies.
+The following five screenshots were captured during the controlled local test on **16 November 2026**. These show the unmodified baseline, a normal filtered search, a SQL parser error, and two contrasting SQL conditions.
+
+### 01 — HTTP baseline
+
+![Burp Proxy HTTP history: initial successful request to local OWASP Juice Shop](../evidence/01-http-history-baseline.png)
+
+### 02 — Normal product search (control)
+
+`GET /rest/products/search?q=apple` returned **HTTP 200** with matching products.
+
+![Burp Repeater: q=apple returns product JSON](../evidence/02-repeater-search-normal.png)
+
+### 03 — Malformed SQL input and error disclosure
+
+`q=%27%29%29` returned **HTTP 500**, revealing `SQLITE_ERROR`, syntax-error details and part of the SQL statement.
+
+![Burp Repeater: malformed input results in an SQLite error](../evidence/03-sqli-sqlite-error.png)
+
+### 04 — SQL boolean condition that evaluates true
+
+Adding the true expression `AND 1=1` yielded **HTTP 200** with product records.
+
+![Burp Repeater: true SQL predicate returns matching products](../evidence/04-sqli-true-condition.png)
+
+### 05 — SQL boolean condition that evaluates false
+
+Changing only the logical predicate to `AND 1=2` yielded **HTTP 200** with an empty `data` list.
+
+![Burp Repeater: false SQL predicate returns an empty list](../evidence/05-sqli-false-condition.png)
+
+### Evidence interpretation and limits
+
+The contrasting predicates were retested and produced the same outcomes. This substantiates control of SQL query logic **in the intentionally vulnerable local app**. It does not establish exfiltration, privileged access or exploitation of any real-world system.
+
+See [evidence index and privacy checklist](../evidence/README.md). The repository remains **private** pending review of the other authenticated-session captures.
