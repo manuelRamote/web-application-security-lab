@@ -28,4 +28,4 @@ Including a `password` property in an API response warrants review even when ret
 
 ## Evidence status
 
-Awaiting sanitized authenticated response screenshot(s). Do not upload session tokens, cookies, email addresses, hashes or TOTP secrets.
+Two real Burp screenshots from the 16 November 2026 local test are **prepared and redacted locally, but not yet uploaded**: `06-authenticated-user-response.png` (authenticated HTTP 200, JWT and sensitive values removed) and `07-unauthenticated-401.png` (HTTP 401 with no credentials). After upload, link them here. No token, cookie, email address, password value, password hash or TOTP secret should be published.
