@@ -80,7 +80,7 @@ Running the same harmless test again produced the same browser alert.
 
 ![Repeated WEB004 browser alert confirms JavaScript execution is reproducible](../evidence/12-dom-xss-repeat.png)
 
-### Burp Repeater — API baseline (supplementary, awaiting screenshot upload)
+### 13 — Burp Repeater API baseline (supplementary)
 
 A separate Burp Repeater request to the server-side product-search endpoint returned:
 
@@ -95,6 +95,8 @@ HTTP/1.1 200 OK
 {"status":"success","data":[]}
 ```
 
-This is a **normal API-response baseline**, not proof of XSS. It also does not contradict the DOM-based finding: the browser's `#/search?q=...` URL fragment is not transmitted directly in the HTTP request, while the browser may still render fragment-derived content as unsafe HTML. The baseline capture will be stored under `13-burp-repeater-api-baseline.png` **after final upload**; it consists of cropped excerpts from the original Repeater request and response, excluding all authorization and cookie lines.
+This is a **normal API-response baseline**, not proof of XSS. It also does not contradict the DOM-based finding: the browser's `#/search?q=...` URL fragment is not transmitted directly in the HTTP request, while the browser may still render fragment-derived content as unsafe HTML. The uploaded capture consists of cropped excerpts from the original Repeater request and response, excluding all authorization and cookie lines.
+
+![Burp Suite Repeater: normal product-search API baseline with HTTP 200 and empty data array](../evidence/13-burp-repeater-api-baseline.png)
 
 See [evidence index](../evidence/README.md). The repository is still private pending final privacy review.
