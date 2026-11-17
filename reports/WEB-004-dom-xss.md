@@ -60,12 +60,41 @@ The tests used an isolated local training instance at `127.0.0.1:3000` and a har
 4. Add automated regression tests for encoded HTML tags and event-handler attributes passed through URL fragments.
 5. Verify that the search view continues to display harmless terms normally after the fix.
 
-## Evidence status
+## Verified visual evidence
 
-Three **real screenshots** from 17 November 2026 have been prepared locally, with no custom banners and image metadata stripped. They are **not yet uploaded to GitHub**:
+### 10 — Benign HTML is interpreted as markup
 
-- `10-dom-html-rendering.png` — benign HTML interpretation observed in the search-results element
-- `11-dom-xss-execution.png` — initial `WEB004` alert and the associated DOM element in Developer Tools
-- `12-dom-xss-repeat.png` — independent repetition producing the same alert
+The URL fragment contained `<b>LABXSS2026</b>`. Developer Tools showed an actual `<b>` element nested inside `span#searchValue`, rather than literal escaped markup.
 
-After review and upload, link the images from this report and the [evidence index](../evidence/README.md). Do not upload unrelated authenticated traffic, cookies, tokens or other browser content.
+![Browser and Developer Tools: searchValue contains a real bold HTML element](../evidence/10-dom-html-rendering.png)
+
+### 11 — JavaScript executes in the browser
+
+The harmless event-handler test `<img src=x onerror=alert('WEB004')>` caused the local browser to display `WEB004`. The same screenshot shows the corresponding `<img onerror>` element in Developer Tools.
+
+![Browser alert WEB004 and corresponding injected image event handler in the DOM](../evidence/11-dom-xss-execution.png)
+
+### 12 — Reproducibility
+
+Running the same harmless test again produced the same browser alert.
+
+![Repeated WEB004 browser alert confirms JavaScript execution is reproducible](../evidence/12-dom-xss-repeat.png)
+
+### Burp Repeater — API baseline (supplementary, awaiting screenshot upload)
+
+A separate Burp Repeater request to the server-side product-search endpoint returned:
+
+```http
+GET /rest/products/search?q=LABXSS2026 HTTP/1.1
+Host: 127.0.0.1:3000
+
+HTTP/1.1 200 OK
+```
+
+```json
+{"status":"success","data":[]}
+```
+
+This is a **normal API-response baseline**, not proof of XSS. It also does not contradict the DOM-based finding: the browser's `#/search?q=...` URL fragment is not transmitted directly in the HTTP request, while the browser may still render fragment-derived content as unsafe HTML. The baseline capture will be stored under `13-burp-repeater-api-baseline.png` **after final upload**; it consists of cropped excerpts from the original Repeater request and response, excluding all authorization and cookie lines.
+
+See [evidence index](../evidence/README.md). The repository is still private pending final privacy review.
