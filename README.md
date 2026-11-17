@@ -8,7 +8,7 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Work in progress. All **nine** screenshots from WEB-001, WEB-002 and WEB-003 are uploaded and linked. Three new WEB-004 screenshots are prepared locally but **not yet uploaded**. The repository remains private until further testing and a final privacy review are complete. No production systems or third-party accounts are tested.
+> **Publication status:** Work in progress. **Twelve** evidence screenshots across WEB-001 through WEB-004 are uploaded and linked. A supplementary Burp Repeater baseline for WEB-004 is prepared for upload. The repository remains private pending further testing and final privacy review. No production systems or third-party accounts are tested.
 
 ## Investigation summary
 
@@ -115,7 +115,19 @@ In the local Juice Shop search view (`/#/search?q=...`), the user-controlled ter
 
 This demonstrates DOM-based XSS **in the intentionally vulnerable local application**. No session hijacking, credential access or third-party exploitation was tested.
 
-**Evidence:** Three redaction-checked screenshots have been prepared locally (HTML rendering, first alert with DOM, repeated alert) and will be linked after upload. See the [technical report](reports/WEB-004-dom-xss.md).
+**Evidence — confirmed DOM-based XSS:**
+
+| Test | Screenshot | Observed result |
+| --- | --- | --- |
+| HTML rendering | [10 — Parsed HTML in `searchValue`](evidence/10-dom-html-rendering.png) | Real `<b>` element in DOM |
+| Harmless event handler | [11 — JavaScript execution](evidence/11-dom-xss-execution.png) | Alert `WEB004`, event handler present in DOM |
+| Repetition | [12 — Repeated execution](evidence/12-dom-xss-repeat.png) | Alert `WEB004` shown again |
+
+![Burp browser: WEB004 alert and the injected event handler in Developer Tools](evidence/11-dom-xss-execution.png)
+
+**Burp Repeater supplement:** The ordinary server-side search request `GET /rest/products/search?q=LABXSS2026` produced `200 OK` with an empty `data` array. A sanitized Repeater capture is prepared as `13-burp-repeater-api-baseline.png` but **has not been uploaded**. This confirms API baseline behavior, **not** the browser-side XSS.
+
+See the [full WEB-004 technical report](reports/WEB-004-dom-xss.md) for the distinction between the URL fragment, the server-side API, and the DOM execution.
 
 ## Documentation
 
