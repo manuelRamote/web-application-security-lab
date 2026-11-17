@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** All **nine screenshots** from the local Burp Suite tests on **16 November 2026** are uploaded and linked: **WEB-001** (five images), **WEB-002** (two images), and **WEB-003** (two images). The repository remains private pending final privacy review and further lab work. Three WEB-004 images are prepared locally and awaiting upload.
+**Current status:** **Twelve screenshots** have been uploaded and linked in the private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), and WEB-004 (three). One additional WEB-004 Burp Repeater baseline has been sanitized locally, but is not yet uploaded. A final privacy review is required before changing repository visibility.
 
 ## Evidence inventory and upload status
 
@@ -16,15 +16,16 @@
 | [`08-cross-user-address-rejected.png`](08-cross-user-address-rejected.png) | User A received HTTP 400 when requesting B's address; request headers omitted | Uploaded and linked |
 | [`09-owner-address-allowed.png`](09-owner-address-allowed.png) | User B received HTTP 200 for own address; request headers and contact data omitted | Uploaded and linked |
 
-### WEB-004 images awaiting upload
+### WEB-004 — XSS evidence
 
-| Planned file | Evidence | Status |
+| Screenshot | What it shows | Status |
 | --- | --- | --- |
-| `10-dom-html-rendering.png` | Search term `<b>LABXSS2026</b>` becomes a real DOM element | Prepared locally; upload pending |
-| `11-dom-xss-execution.png` | Harmless JavaScript alert `WEB004` and corresponding DOM `<img onerror>` | Prepared locally; upload pending |
-| `12-dom-xss-repeat.png` | Second successful `WEB004` alert confirms reproducibility | Prepared locally; upload pending |
+| [`10-dom-html-rendering.png`](10-dom-html-rendering.png) | Benign HTML is inserted as an element inside `span#searchValue` | Uploaded and linked |
+| [`11-dom-xss-execution.png`](11-dom-xss-execution.png) | JavaScript alert `WEB004` and `<img onerror>` in DOM | Uploaded and linked |
+| [`12-dom-xss-repeat.png`](12-dom-xss-repeat.png) | Repeated execution produces the same alert | Uploaded and linked |
+| `13-burp-repeater-api-baseline.png` | Burp `q=LABXSS2026` request and `200 OK`, `data: []` response | Prepared locally; upload pending |
 
-These images were captured from the local 17 November 2026 test and contain no added banners. Do not mark them uploaded until the repository tree is verified.
+The Burp baseline is supplementary: it documents ordinary API behavior, not proof of DOM XSS. The browser-side execution and DOM insertion are documented in images 10–12. The new Repeater screenshot uses cropped excerpts of the **same real request/response**; the portion of the request containing authorization and cookie headers has been removed, not blurred. Do not mark it uploaded until the repository tree confirms it.
 
 The five WEB-001 PNGs show the local unauthenticated tests and were inspected for token or cookie exposure during cropping. Perform a final release review of every image before changing repository visibility.
 
