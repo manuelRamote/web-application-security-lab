@@ -104,20 +104,56 @@ A successful `PUT` by the item owner does **not** indicate a broken authorizatio
 5. Add regression tests for `-1`, `0`, valid positive integers, non-integers, extremely large values and repeated update requests.
 6. Avoid revealing internal validation details in client responses; retain relevant logs for diagnosis.
 
-## Evidence — prepared locally, upload pending
+## Verified screenshots — original Burp and browser evidence
 
-Seven images derived from the original Burp and browser screenshots have been prepared, with authentication-bearing request headers excluded from Burp excerpts and test-account email removed from basket UI screenshots.
+All seven images below have been uploaded to the private repository and verified by filename. The user reviewed the sanitized images before uploading them. Burp excerpts omit authentication-bearing header sections; browser UI images omit the lab-account email.
 
-| Planned image | Demonstrates |
-| --- | --- |
-| `14-negative-quantity-put.png` | `PUT` with `quantity: -1`; server accepts it |
-| `15-negative-total-ui.png` | `-1` unit and `-1.99` total shown |
-| `16-negative-quantity-persisted.png` | Later `GET /rest/basket/6` shows `quantity: -1` |
-| `17-zero-quantity-put.png` | `PUT` with `quantity: 0`; server accepts it |
-| `18-zero-total-ui.png` | Zero-quantity product remains visible |
-| `19-restored-quantity-put.png` | `PUT` restores quantity 2 |
-| `20-restored-basket-ui.png` | Basket shows two units, total 3.98 |
+### 14 — API accepts a negative quantity
 
-**The images are not yet in GitHub and therefore are not embedded here.** After the user uploads and checks them, link each verified image and update the evidence index. The Burp images are excerpts taken from the **same real request and response** with sensitive middle headers omitted; they are not full raw HTTP requests. The underlying request/response values have not been edited or invented.
+A `PUT /api/BasketItems/9` with `{"quantity":-1}` returned `200 OK` and included `quantity: -1` in its JSON response.
 
-See the [evidence inventory](../evidence/README.md) and retain the repository as **private** until a final privacy review is complete.
+![Burp Repeater response accepting quantity minus one](../evidence/14-negative-quantity-put.png)
+
+### 15 — Negative basket total shown in the UI
+
+The local basket page displayed a **quantity of -1** and a **total of -1.99** for Banana Juice.
+
+![Juice Shop basket with negative quantity and total](../evidence/15-negative-total-ui.png)
+
+### 16 — Negative value returned in a separate GET
+
+A later `GET /rest/basket/6` returned basket item `9` with `quantity: -1`. This confirms that the invalid state persisted beyond the PUT response.
+
+![Burp response showing negative quantity persisted in basket GET](../evidence/16-negative-quantity-persisted.png)
+
+### 17 — Boundary test: zero accepted
+
+The same update endpoint accepted `{"quantity":0}` and returned `200 OK`. This is a boundary-condition observation; its security implications depend on the application's intended business rules.
+
+![Burp Repeater response accepting zero quantity](../evidence/17-zero-quantity-put.png)
+
+### 18 — Zero-quantity item remains visible
+
+The basket page still displayed the item at quantity `0`, with total `0`.
+
+![Juice Shop basket retaining item at zero quantity](../evidence/18-zero-total-ui.png)
+
+### 19 — Restore to a normal value
+
+The operator sent `{"quantity":2}` to restore the test item. The API returned `200 OK` with `quantity: 2`.
+
+![Burp Repeater response restoring basket quantity to two](../evidence/19-restored-quantity-put.png)
+
+### 20 — Confirm restored basket in the UI
+
+After restoration, the basket displayed **2 units** and total **3.98**.
+
+![Juice Shop basket restored to quantity two and a positive total](../evidence/20-restored-basket-ui.png)
+
+### Evidence interpretation and limits
+
+The strongest finding is the **negative value being accepted, returned by a later GET, and reflected as a negative basket total**. The zero-quantity test describes additional boundary behavior but is not treated as a standalone security finding. No checkout, payment, credit, or refund manipulation was attempted.
+
+These are **cropped excerpts from real application traffic**, not reconstructed HTTP logs. The repository should remain private until a final privacy and technical review is completed.
+
+See the [full evidence index](../evidence/README.md).
