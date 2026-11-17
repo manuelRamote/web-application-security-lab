@@ -28,4 +28,4 @@ This controlled comparison is **consistent with** authorization restricting the 
 
 ## Evidence status
 
-Screenshots from Burp have not been uploaded. Sanitize all Authorization headers, cookies and fictional contact data before publication.
+Two screenshots from the original Burp Repeater session have been prepared and inspected **locally** (not uploaded yet): `08-cross-user-address-rejected.png` (cross-account request, HTTP 400) and `09-owner-address-allowed.png` (owner request, HTTP 200). These are clearly labeled **cropped excerpts**, retaining the original visible request target and response while excluding authentication headers, cookies, telephone and address details. Link them after uploading the final reviewed PNGs.
