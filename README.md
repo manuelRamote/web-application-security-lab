@@ -8,7 +8,7 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Work in progress. All **nine** screenshots from WEB-001, WEB-002 and WEB-003 have been uploaded and linked. The repository remains private until further testing and a final privacy review are complete. No production systems or third-party accounts are tested.
+> **Publication status:** Work in progress. All **nine** screenshots from WEB-001, WEB-002 and WEB-003 are uploaded and linked. Three new WEB-004 screenshots are prepared locally but **not yet uploaded**. The repository remains private until further testing and a final privacy review are complete. No production systems or third-party accounts are tested.
 
 ## Investigation summary
 
@@ -17,6 +17,7 @@ This project documents controlled manual testing of an intentionally vulnerable 
 | [WEB-001](reports/WEB-001-sql-injection.md) | Input handling / SQL injection | Boolean conditions alter product-search results; a malformed input leaks an SQLite error and query text | **Confirmed, reproducible** |
 | [WEB-002](reports/WEB-002-user-data-exposure.md) | API response data exposure | Authenticated `GET /rest/saveLoginIp` returns a nonempty `password` property | **Observed; sensitivity and impact require assessment** |
 | [WEB-003](reports/WEB-003-address-access-control.md) | Horizontal access control | Owner B can read address 7; another controlled user A receives a 400 response | **No IDOR demonstrated in the tested scenario** |
+| [WEB-004](reports/WEB-004-dom-xss.md) | DOM-based Cross-Site Scripting | Search URL fragment is interpreted as HTML and an `onerror` event handler executes a harmless alert | **Confirmed, reproduced twice** |
 
 **Important:** WEB-003 is a **security-control test**, not a vulnerability finding. WEB-002 should not be treated as confirmed credential disclosure until the returned value has been characterized safely.
 
@@ -108,6 +109,14 @@ The tested read scenario **did not demonstrate an IDOR**. Other operations and i
 
 These two cropped evidence excerpts do not contain Authorization headers, cookies, or contact details. See [WEB-003's full assessment](reports/WEB-003-address-access-control.md) for limitations and the distinction between a successful access-control test and a vulnerability finding.
 
+### WEB-004 — Reproducible DOM-based XSS in search
+
+In the local Juice Shop search view (`/#/search?q=...`), the user-controlled term was inserted into `span#searchValue` as parsed HTML. A harmless `<b>` tag was rendered as an element; then the event-handler payload `<img src=x onerror=alert('WEB004')>` executed in the browser. The alert `WEB004` was observed **twice**, and Developer Tools confirmed the injected `<img>` inside the DOM.
+
+This demonstrates DOM-based XSS **in the intentionally vulnerable local application**. No session hijacking, credential access or third-party exploitation was tested.
+
+**Evidence:** Three redaction-checked screenshots have been prepared locally (HTML rendering, first alert with DOM, repeated alert) and will be linked after upload. See the [technical report](reports/WEB-004-dom-xss.md).
+
 ## Documentation
 
 - [Lab setup and safe operation](docs/lab-setup.md)
@@ -115,6 +124,7 @@ These two cropped evidence excerpts do not contain Authorization headers, cookie
 - [WEB-001 — SQL Injection](reports/WEB-001-sql-injection.md)
 - [WEB-002 — Possible excessive user data exposure](reports/WEB-002-user-data-exposure.md)
 - [WEB-003 — Address access-control verification](reports/WEB-003-address-access-control.md)
+- [WEB-004 — DOM-based XSS](reports/WEB-004-dom-xss.md)
 - [Evidence review and upload checklist](evidence/README.md)
 
 ## Scope and responsible handling
