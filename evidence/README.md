@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** **Thirteen screenshots** have been uploaded and linked in this private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), and WEB-004 (four). Seven additional WEB-005 excerpts have been prepared locally but are awaiting upload. A final privacy review is required before changing repository visibility.
+**Current status:** **Twenty screenshots** are uploaded and linked in this private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), WEB-004 (four), and WEB-005 (seven). A final privacy review is required before changing repository visibility.
 
 ## Evidence inventory and upload status
 
@@ -29,21 +29,21 @@ The Burp baseline is supplementary: it documents ordinary API behavior, not proo
 
 The five WEB-001 PNGs show the local unauthenticated tests and were inspected for token or cookie exposure during cropping. Perform a final release review of every image before changing repository visibility.
 
-### WEB-005 — Basket quantity manipulation (images prepared locally)
+### WEB-005 — Basket quantity manipulation
 
-**Status:** Seven original-image excerpts have been prepared with session headers excluded and email removed from UI captures. They are **not yet uploaded to this repository**.
+**Status:** All seven screenshots are **uploaded and linked**. The user reviewed the images before uploading them. The supplied Burp excerpts exclude session-bearing header sections and the UI captures omit the lab-account email.
 
-| Planned filename | Evidence | State |
+| Screenshot | Evidence | Status |
 | --- | --- | --- |
-| `14-negative-quantity-put.png` | API accepts quantity -1 | Prepared locally, upload pending |
-| `15-negative-total-ui.png` | Basket displays -1 unit and -1.99 total | Prepared locally, upload pending |
-| `16-negative-quantity-persisted.png` | GET retrieves stored -1 quantity | Prepared locally, upload pending |
-| `17-zero-quantity-put.png` | API accepts quantity 0 | Prepared locally, upload pending |
-| `18-zero-total-ui.png` | Basket shows zero quantity and total | Prepared locally, upload pending |
-| `19-restored-quantity-put.png` | Quantity 2 restored through API | Prepared locally, upload pending |
-| `20-restored-basket-ui.png` | Basket returned to two units, total 3.98 | Prepared locally, upload pending |
+| [`14-negative-quantity-put.png`](14-negative-quantity-put.png) | API accepts quantity -1 | Uploaded and linked |
+| [`15-negative-total-ui.png`](15-negative-total-ui.png) | Basket displays -1 unit and -1.99 total | Uploaded and linked |
+| [`16-negative-quantity-persisted.png`](16-negative-quantity-persisted.png) | GET retrieves stored -1 quantity | Uploaded and linked |
+| [`17-zero-quantity-put.png`](17-zero-quantity-put.png) | API accepts quantity 0 | Uploaded and linked |
+| [`18-zero-total-ui.png`](18-zero-total-ui.png) | Basket shows zero quantity and total | Uploaded and linked |
+| [`19-restored-quantity-put.png`](19-restored-quantity-put.png) | Quantity 2 restored through API | Uploaded and linked |
+| [`20-restored-basket-ui.png`](20-restored-basket-ui.png) | Basket returned to two units, total 3.98 | Uploaded and linked |
 
-The backend persisted a negative quantity and the UI displayed a negative total; no negative-value checkout or payment was attempted. Zero-value handling is documented as a boundary behavior, not automatically a vulnerability. Perform a final visual review of the saved images before upload.
+The backend persisted a negative quantity and the UI displayed a negative total; no negative-value checkout or payment was attempted. Zero-value handling is documented as a boundary behavior, not automatically a vulnerability. The images were reviewed prior to upload. Check repository-wide exposure again before public release.
 
 ## Privacy checklist
 
