@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** All **nine screenshots** from the local Burp Suite tests on **16 November 2026** are uploaded and linked: **WEB-001** (five images), **WEB-002** (two images), and **WEB-003** (two images). The repository remains private pending final privacy review and further lab work.
+**Current status:** All **nine screenshots** from the local Burp Suite tests on **16 November 2026** are uploaded and linked: **WEB-001** (five images), **WEB-002** (two images), and **WEB-003** (two images). The repository remains private pending final privacy review and further lab work. Three WEB-004 images are prepared locally and awaiting upload.
 
 ## Evidence inventory and upload status
 
@@ -15,6 +15,16 @@
 | [`07-unauthenticated-401.png`](07-unauthenticated-401.png) | `/rest/saveLoginIp` rejected without authentication | Uploaded and linked |
 | [`08-cross-user-address-rejected.png`](08-cross-user-address-rejected.png) | User A received HTTP 400 when requesting B's address; request headers omitted | Uploaded and linked |
 | [`09-owner-address-allowed.png`](09-owner-address-allowed.png) | User B received HTTP 200 for own address; request headers and contact data omitted | Uploaded and linked |
+
+### WEB-004 images awaiting upload
+
+| Planned file | Evidence | Status |
+| --- | --- | --- |
+| `10-dom-html-rendering.png` | Search term `<b>LABXSS2026</b>` becomes a real DOM element | Prepared locally; upload pending |
+| `11-dom-xss-execution.png` | Harmless JavaScript alert `WEB004` and corresponding DOM `<img onerror>` | Prepared locally; upload pending |
+| `12-dom-xss-repeat.png` | Second successful `WEB004` alert confirms reproducibility | Prepared locally; upload pending |
+
+These images were captured from the local 17 November 2026 test and contain no added banners. Do not mark them uploaded until the repository tree is verified.
 
 The five WEB-001 PNGs show the local unauthenticated tests and were inspected for token or cookie exposure during cropping. Perform a final release review of every image before changing repository visibility.
 
