@@ -7,7 +7,18 @@
 - Docker service installed and started
 - OWASP Juice Shop accessible from the Kali VM at `http://127.0.0.1:3000`
 
-The precise Docker image digest/version and virtualization mode were not recorded. Capture them before the final project release to improve reproducibility.
+The precise Docker image digest/version and virtualization mode were not recorded. Capture them from the original Kali VM before public release to improve reproducibility. These values cannot be reconstructed reliably from the screenshots.
+
+## Record the exact Docker image version before release
+
+When the original container is still present, use these commands on the Kali VM:
+
+```bash
+sudo docker inspect juice-shop-lab --format 'Image ID: {{.Image}}; Configured image: {{.Config.Image}}'
+sudo docker image inspect bkimminich/juice-shop:latest --format 'Repo digests: {{json .RepoDigests}}; ID: {{.Id}}'
+```
+
+Copy the observed immutable digest or image ID into this documentation. The initial test container was started from `bkimminich/juice-shop` (implicitly `latest`); **do not label an unknown release as a specific version**. The second command may fail if the tag is absent; in that case use the image ID returned by `docker inspect`. These commands do not change the running container.
 
 ## Start the local application
 
