@@ -8,7 +8,7 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Work in progress. All **thirteen** evidence screenshots across WEB-001 through WEB-004 are uploaded and linked, including a supplementary Burp Repeater API baseline. The repository remains private pending further testing and final privacy review. No production systems or third-party accounts are tested.
+> **Publication status:** Work in progress. **Thirteen** WEB-001–WEB-004 evidence screenshots are uploaded and linked. Seven WEB-005 screenshots have been prepared locally but **not yet uploaded**. The repository remains private pending final review. No production systems or third-party accounts are tested.
 
 ## Investigation summary
 
@@ -18,6 +18,7 @@ This project documents controlled manual testing of an intentionally vulnerable 
 | [WEB-002](reports/WEB-002-user-data-exposure.md) | API response data exposure | Authenticated `GET /rest/saveLoginIp` returns a nonempty `password` property | **Observed; sensitivity and impact require assessment** |
 | [WEB-003](reports/WEB-003-address-access-control.md) | Horizontal access control | Owner B can read address 7; another controlled user A receives a 400 response | **No IDOR demonstrated in the tested scenario** |
 | [WEB-004](reports/WEB-004-dom-xss.md) | DOM-based Cross-Site Scripting | Search URL fragment is interpreted as HTML and an `onerror` event handler executes a harmless alert | **Confirmed, reproduced twice** |
+| [WEB-005](reports/WEB-005-basket-quantity-validation.md) | Business logic / quantity validation | Negative basket quantity accepted, persisted and displayed with a negative total; zero quantity accepted | **Negative quantity validation weakness confirmed** |
 
 **Important:** WEB-003 is a **security-control test**, not a vulnerability finding. WEB-002 should not be treated as confirmed credential disclosure until the returned value has been characterized safely.
 
@@ -130,6 +131,14 @@ This demonstrates DOM-based XSS **in the intentionally vulnerable local applicat
 
 See the [full WEB-004 technical report](reports/WEB-004-dom-xss.md) for the distinction between the URL fragment, the server-side API, and the DOM execution.
 
+### WEB-005 — Negative basket quantity and business logic
+
+Testing the owned basket item's `PUT /api/BasketItems/9` endpoint with Burp Repeater demonstrated that `{"quantity":-1}` was **accepted with HTTP 200**, later returned in `GET /rest/basket/6`, and rendered in the basket UI with a **negative total of -1.99**. The zero boundary case (`{"quantity":0}`) was also accepted and shown in the UI with a total of 0, although that is not independently classified as a vulnerability. The basket was restored to quantity 2 (total 3.98).
+
+**Conclusion:** server-side negative-quantity validation is insufficient for the tested operation. Negative checkout/payment execution was **not** demonstrated.
+
+**Evidence:** Seven sanitized excerpts have been prepared locally and are **awaiting image upload**. See [WEB-005 technical report](reports/WEB-005-basket-quantity-validation.md).
+
 ## Documentation
 
 - [Lab setup and safe operation](docs/lab-setup.md)
@@ -138,6 +147,7 @@ See the [full WEB-004 technical report](reports/WEB-004-dom-xss.md) for the dist
 - [WEB-002 — Possible excessive user data exposure](reports/WEB-002-user-data-exposure.md)
 - [WEB-003 — Address access-control verification](reports/WEB-003-address-access-control.md)
 - [WEB-004 — DOM-based XSS](reports/WEB-004-dom-xss.md)
+- [WEB-005 — Basket quantity validation](reports/WEB-005-basket-quantity-validation.md)
 - [Evidence review and upload checklist](evidence/README.md)
 
 ## Scope and responsible handling
