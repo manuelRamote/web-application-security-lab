@@ -1,6 +1,6 @@
 # Web Application Security Assessment — OWASP Juice Shop
 
-![Status](https://img.shields.io/badge/Status-In%20Progress-0969da?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Under%20Review-0969da?style=flat-square)
 ![Focus](https://img.shields.io/badge/Focus-Web%20App%20Security-6f42c1?style=flat-square)
 ![Tools](https://img.shields.io/badge/Tools-Burp%20Suite%20%7C%20Kali%20Linux-555?style=flat-square)
 
@@ -8,7 +8,17 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Work in progress. All **twenty** evidence screenshots from WEB-001 through WEB-005 are uploaded and linked. The repository remains private pending a final technical and privacy review. No production systems or third-party accounts are tested.
+> **Publication status:** Five investigations and **20 reviewed evidence screenshots** are documented. The repository remains **private** while final release checks are completed. All tests targeted a locally hosted intentionally vulnerable application; no production systems or third-party accounts were tested.
+
+## At a glance
+
+- **3 confirmed local findings:** SQL injection (WEB-001), DOM-based XSS (WEB-004), and negative basket quantity / incorrect total (WEB-005).
+- **1 observation requiring further assessment:** returned user attributes (WEB-002).
+- **1 access-control test without a demonstrated bypass:** cross-user address lookup (WEB-003).
+- **20 screenshots** link individual HTTP requests and responses to technical conclusions and remediation guidance.
+- **No real-world exploitation:** testing was restricted to the operator's isolated OWASP Juice Shop lab.
+
+**Quick navigation:** [Findings](#investigation-summary) · [Lab setup](docs/lab-setup.md) · [Methodology](docs/testing-methodology.md) · [Technical reports](#documentation) · [Evidence index](evidence/README.md)
 
 ## Investigation summary
 
@@ -72,8 +82,6 @@ This evidence supports a **confirmed SQL injection** in the local training appli
 
 ![SQL error response captured in Burp Repeater](evidence/03-sqli-sqlite-error.png)
 
-![SQL true/false test: empty JSON response with the false predicate](evidence/05-sqli-false-condition.png)
-
 For complete evidence and interpretation, see [WEB-001's technical report](reports/WEB-001-sql-injection.md).
 
 ### WEB-002 — User attributes in an authenticated API response
@@ -86,8 +94,6 @@ The value was deliberately not published or identified as plaintext/hash. The ri
 | --- | --- | --- |
 | Authenticated user | [06 — User-property response](evidence/06-authenticated-user-response.png) | `200 OK`; nonempty `password` attribute observed |
 | Unauthenticated request | [07 — Access denied](evidence/07-unauthenticated-401.png) | `401 Unauthorized`; user data not returned |
-
-![Burp Suite: unauthorized request to protected user endpoint](evidence/07-unauthenticated-401.png)
 
 See [WEB-002 technical assessment](reports/WEB-002-user-data-exposure.md) for observations, limitations and remediation guidance.
 
@@ -103,10 +109,6 @@ The tested read scenario **did not demonstrate an IDOR**. Other operations and i
 | --- | --- | --- |
 | User A (ID 26) requests B's address 7 | [08 — Cross-user request rejected](evidence/08-cross-user-address-rejected.png) | `400 Bad Request` |
 | User B (ID 27) requests owned address 7 | [09 — Owner request permitted](evidence/09-owner-address-allowed.png) | `200 OK` |
-
-![Burp Repeater: denied cross-user address request](evidence/08-cross-user-address-rejected.png)
-
-![Burp Repeater: owner address request succeeds](evidence/09-owner-address-allowed.png)
 
 These two cropped evidence excerpts do not contain Authorization headers, cookies, or contact details. See [WEB-003's full assessment](reports/WEB-003-address-access-control.md) for limitations and the distinction between a successful access-control test and a vulnerability finding.
 
@@ -149,8 +151,6 @@ Testing the owned basket item's `PUT /api/BasketItems/9` endpoint with Burp Repe
 | Restore via API | [19 — PUT quantity 2](evidence/19-restored-quantity-put.png) | `200 OK`, `quantity: 2` |
 | Restored UI | [20 — Normal basket total](evidence/20-restored-basket-ui.png) | Two units, total 3.98 |
 
-![Burp Suite Repeater: negative basket quantity accepted](evidence/14-negative-quantity-put.png)
-
 ![Juice Shop basket: negative quantity produces negative total](evidence/15-negative-total-ui.png)
 
 The seven uploaded images are integrated with their individual explanations in the [WEB-005 technical report](reports/WEB-005-basket-quantity-validation.md).
@@ -166,6 +166,15 @@ The seven uploaded images are integrated with their individual explanations in t
 - [WEB-005 — Basket quantity validation](reports/WEB-005-basket-quantity-validation.md)
 - [Evidence review and upload checklist](evidence/README.md)
 
+## Publication and reproducibility checks
+
+The written findings are supported by the captured tests, but the repository is **not automatically ready for public release**. Before changing visibility:
+
+- Verify the exact OWASP Juice Shop image version or digest on the original Kali VM (instructions in [lab setup](docs/lab-setup.md)). The original image was pulled from `bkimminich/juice-shop:latest`; `latest` is not a reproducible version identifier.
+- Review **every published screenshot and repository commit history** for bearer tokens, session cookies, credentials, emails, addresses and other information that could remain accessible after publication. The current 20 PNGs have no embedded PNG metadata and their local copies match the GitHub blobs.
+- Recheck the status and limitations of each finding. WEB-002 is **not** confirmed plaintext-password exposure and WEB-003 is **not** a confirmed IDOR. WEB-005 does **not** claim successful checkout with a negative amount.
+- Verify repository description, social preview and README rendering before sharing on GitHub or LinkedIn.
+
 ## Scope and responsible handling
 
 All requests target a deliberately vulnerable application running **locally**, and all accounts are controlled by the operator. Do not direct these tests at third-party applications without explicit authorization.
@@ -174,5 +183,5 @@ Raw proxy logs, JWTs, cookies, credentials, user addresses, and unsanitized scre
 
 ---
 
-*Independent educational project · Web application assessment · Burp Suite Community · In progress.*
+*Independent educational project · OWASP Juice Shop · Burp Suite Community · Private pending release review.*
 
