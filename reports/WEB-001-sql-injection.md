@@ -75,4 +75,4 @@ Changing only the logical predicate to `AND 1=2` yielded **HTTP 200** with an em
 
 The contrasting predicates were retested and produced the same outcomes. This substantiates control of SQL query logic **in the intentionally vulnerable local app**. It does not establish exfiltration, privileged access or exploitation of any real-world system.
 
-See [evidence index and privacy checklist](../evidence/README.md). The repository remains **private** pending review of the other authenticated-session captures.
+See [evidence index and privacy checklist](../evidence/README.md). The repository remains **private** pending the final repository-wide release review.
