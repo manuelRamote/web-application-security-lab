@@ -8,7 +8,7 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Work in progress. Seven reviewed screenshots for WEB-001 and WEB-002 are uploaded and linked. WEB-003 evidence remains pending anonymization. No production systems or third-party accounts are tested.
+> **Publication status:** Work in progress. All **nine** screenshots from WEB-001, WEB-002 and WEB-003 have been uploaded and linked. The repository remains private until further testing and a final privacy review are complete. No production systems or third-party accounts are tested.
 
 ## Investigation summary
 
@@ -94,6 +94,19 @@ See [WEB-002 technical assessment](reports/WEB-002-user-data-exposure.md) for ob
 In the local test, an address with ID `7` was owned by user B (ID `27`). User A (ID `26`) received `400 Bad Request` (`Malicious activity detected.`) when requesting `/api/Addresss/7`. A later valid request with user B's authenticated session returned `200 OK` and B's address.
 
 The tested read scenario **did not demonstrate an IDOR**. Other operations and identifiers were not comprehensively tested.
+
+**Owner-based access check — evidence:**
+
+| Test context | Screenshot | Observed result |
+| --- | --- | --- |
+| User A (ID 26) requests B's address 7 | [08 — Cross-user request rejected](evidence/08-cross-user-address-rejected.png) | `400 Bad Request` |
+| User B (ID 27) requests owned address 7 | [09 — Owner request permitted](evidence/09-owner-address-allowed.png) | `200 OK` |
+
+![Burp Repeater: denied cross-user address request](evidence/08-cross-user-address-rejected.png)
+
+![Burp Repeater: owner address request succeeds](evidence/09-owner-address-allowed.png)
+
+These two cropped evidence excerpts do not contain Authorization headers, cookies, or contact details. See [WEB-003's full assessment](reports/WEB-003-address-access-control.md) for limitations and the distinction between a successful access-control test and a vulnerability finding.
 
 ## Documentation
 
