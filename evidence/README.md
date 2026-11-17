@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** All seven screenshots for **WEB-001 (five images)** and **WEB-002 (two images)** from **16 November 2026** are uploaded and linked in the private repository. WEB-003 screenshots 08 and 09 have been prepared and inspected locally; their upload is pending.
+**Current status:** All **nine screenshots** from the local Burp Suite tests on **16 November 2026** are uploaded and linked: **WEB-001** (five images), **WEB-002** (two images), and **WEB-003** (two images). The repository remains private pending final privacy review and further lab work.
 
 ## Evidence inventory and upload status
 
@@ -13,8 +13,8 @@
 | [`05-sqli-false-condition.png`](05-sqli-false-condition.png) | False-condition SQL injection test | Uploaded and linked |
 | [`06-authenticated-user-response.png`](06-authenticated-user-response.png) | Authenticated user property names; authorization and sensitive values redacted | Uploaded and linked |
 | [`07-unauthenticated-401.png`](07-unauthenticated-401.png) | `/rest/saveLoginIp` rejected without authentication | Uploaded and linked |
-| `08-cross-user-address-rejected.png` | User A received HTTP 400 when requesting B's address; request headers omitted | Prepared locally · upload pending |
-| `09-owner-address-allowed.png` | User B received HTTP 200 for own address; request headers and contact data omitted | Prepared locally · upload pending |
+| [`08-cross-user-address-rejected.png`](08-cross-user-address-rejected.png) | User A received HTTP 400 when requesting B's address; request headers omitted | Uploaded and linked |
+| [`09-owner-address-allowed.png`](09-owner-address-allowed.png) | User B received HTTP 200 for own address; request headers and contact data omitted | Uploaded and linked |
 
 The five WEB-001 PNGs show the local unauthenticated tests and were inspected for token or cookie exposure during cropping. Perform a final release review of every image before changing repository visibility.
 
