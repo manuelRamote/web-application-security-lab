@@ -47,4 +47,4 @@ The same endpoint was requested without the Bearer authorization header or sessi
 | Authenticated lab user | `200 OK`; user attributes include nonempty `password` field | Potentially unnecessary exposure of a sensitive attribute |
 | No authentication | `401 Unauthorized`; no user attributes returned | Anonymous access was rejected in this test |
 
-The evidence supports a **data-minimization concern**, not plaintext-password disclosure or authentication bypass. Both captures were taken against a local intentionally vulnerable training application, then redacted before upload. The repository must remain private until all later authenticated-session evidence and release checks are complete.
+The evidence supports a **data-minimization concern**, not plaintext-password disclosure or authentication bypass. Both captures were taken against a local intentionally vulnerable training application, then redacted before upload. The repository remains private pending the final privacy and publication review; all current evidence filenames are present.
