@@ -8,7 +8,7 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Work in progress. **Thirteen** WEB-001–WEB-004 evidence screenshots are uploaded and linked. Seven WEB-005 screenshots have been prepared locally but **not yet uploaded**. The repository remains private pending final review. No production systems or third-party accounts are tested.
+> **Publication status:** Work in progress. All **twenty** evidence screenshots from WEB-001 through WEB-005 are uploaded and linked. The repository remains private pending a final technical and privacy review. No production systems or third-party accounts are tested.
 
 ## Investigation summary
 
@@ -137,7 +137,23 @@ Testing the owned basket item's `PUT /api/BasketItems/9` endpoint with Burp Repe
 
 **Conclusion:** server-side negative-quantity validation is insufficient for the tested operation. Negative checkout/payment execution was **not** demonstrated.
 
-**Evidence:** Seven sanitized excerpts have been prepared locally and are **awaiting image upload**. See [WEB-005 technical report](reports/WEB-005-basket-quantity-validation.md).
+**Evidence — confirmed validation weakness and state restoration:**
+
+| Test | Screenshot | Observed outcome |
+| --- | --- | --- |
+| Negative update | [14 — PUT quantity -1](evidence/14-negative-quantity-put.png) | `200 OK`, `quantity: -1` |
+| Negative UI total | [15 — Negative basket total](evidence/15-negative-total-ui.png) | Quantity -1, total -1.99 |
+| State verification | [16 — GET confirms -1](evidence/16-negative-quantity-persisted.png) | Negative value returned later |
+| Zero boundary | [17 — PUT quantity 0](evidence/17-zero-quantity-put.png) | `200 OK`, `quantity: 0` |
+| Zero UI total | [18 — Zero basket total](evidence/18-zero-total-ui.png) | Item visible, total 0 |
+| Restore via API | [19 — PUT quantity 2](evidence/19-restored-quantity-put.png) | `200 OK`, `quantity: 2` |
+| Restored UI | [20 — Normal basket total](evidence/20-restored-basket-ui.png) | Two units, total 3.98 |
+
+![Burp Suite Repeater: negative basket quantity accepted](evidence/14-negative-quantity-put.png)
+
+![Juice Shop basket: negative quantity produces negative total](evidence/15-negative-total-ui.png)
+
+The seven uploaded images are integrated with their individual explanations in the [WEB-005 technical report](reports/WEB-005-basket-quantity-validation.md).
 
 ## Documentation
 
