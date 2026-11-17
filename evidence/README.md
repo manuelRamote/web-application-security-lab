@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** **Twenty screenshots** are uploaded and linked in this private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), WEB-004 (four), and WEB-005 (seven). A final privacy review is required before changing repository visibility.
+**Current status:** **Twenty screenshots** are uploaded and linked in this private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), WEB-004 (four), and WEB-005 (seven). All current PNGs have been checked for matching uploaded content and absent PNG metadata, but a final privacy and repository-history check is still required before changing visibility.
 
 ## Evidence inventory and upload status
 
@@ -27,7 +27,7 @@
 
 The Burp baseline is supplementary: it documents ordinary API behavior, not proof of DOM XSS. The browser-side execution and DOM insertion are documented in images 10–12. The new Repeater screenshot uses cropped excerpts of the **same real request/response**; the portion of the request containing authorization and cookie headers has been removed, not blurred. Its upload and path have been confirmed in the repository tree.
 
-The five WEB-001 PNGs show the local unauthenticated tests and were inspected for token or cookie exposure during cropping. Perform a final release review of every image before changing repository visibility.
+The five WEB-001 PNGs document local tests and were inspected for exposed token or cookie values during preparation; the evidence is not proof that every historical version or screenshot is free of sensitive data. Perform a final release review of every image before changing repository visibility.
 
 ### WEB-005 — Basket quantity manipulation
 
@@ -52,7 +52,8 @@ The backend persisted a negative quantity and the UI displayed a negative total;
 - [ ] Ensure browser tabs, URL parameters, desktop paths and terminal history contain no unrelated private information.
 - [ ] Include only the necessary response fields and HTTP status code for technical explanation.
 - [ ] Verify each redacted output as saved, not merely the original editor preview.
-- [ ] Inspect file metadata and exclude raw Burp project files and unredacted exports.
+- [x] Check the 20 currently uploaded PNGs for embedded metadata (none found) and match their Git blob SHA to reviewed local copies.
+- [ ] Inspect Git commit history and exclude raw Burp project files and unredacted exports.
 - [ ] Only publish evidence once the review is complete.
 
 Never upload live credentials or copy authentic tokens into text documentation. Prefer new short-lived lab sessions when creating publication-ready screenshots.
