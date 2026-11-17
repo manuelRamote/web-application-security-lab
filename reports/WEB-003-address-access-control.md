@@ -51,4 +51,4 @@ The following are **cropped excerpts** from the original controlled tests conduc
 
 The tested behavior is **consistent with owner-based authorization** for this particular resource-read operation. No IDOR was demonstrated. It does **not** prove that every address-related endpoint or HTTP method is protected.
 
-The full set of uploaded evidence is indexed in [`evidence/README.md`](../evidence/README.md). The repository remains private pending completion of additional lab work and a final privacy review.
+The full set of uploaded evidence is indexed in [`evidence/README.md`](../evidence/README.md). The repository remains private pending the final privacy and publication review.
