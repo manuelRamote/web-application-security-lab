@@ -8,7 +8,7 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Work in progress. WEB-001's five sanitized evidence screenshots are uploaded and linked below; authenticated-session screenshots for WEB-002 and WEB-003 are still pending review. No production systems or third-party accounts are tested.
+> **Publication status:** Work in progress. Seven reviewed screenshots for WEB-001 and WEB-002 are uploaded and linked. WEB-003 evidence remains pending anonymization. No production systems or third-party accounts are tested.
 
 ## Investigation summary
 
@@ -79,6 +79,15 @@ For complete evidence and interpretation, see [WEB-001's technical report](repor
 An authenticated `GET /rest/saveLoginIp` returned user attributes including a **nonempty `password` property**. The same endpoint without credentials returned `401 Unauthorized`.
 
 The value was deliberately not published or identified as plaintext/hash. The risk assessment is pending; the endpoint's authenticated behavior alone is not proof of unauthorized access.
+
+| Test | Evidence | Result |
+| --- | --- | --- |
+| Authenticated user | [06 — User-property response](evidence/06-authenticated-user-response.png) | `200 OK`; nonempty `password` attribute observed |
+| Unauthenticated request | [07 — Access denied](evidence/07-unauthenticated-401.png) | `401 Unauthorized`; user data not returned |
+
+![Burp Suite: unauthorized request to protected user endpoint](evidence/07-unauthenticated-401.png)
+
+See [WEB-002 technical assessment](reports/WEB-002-user-data-exposure.md) for observations, limitations and remediation guidance.
 
 ### WEB-003 — Address isolation (tested control)
 
