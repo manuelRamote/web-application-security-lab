@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** **Twelve screenshots** have been uploaded and linked in the private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), and WEB-004 (three). One additional WEB-004 Burp Repeater baseline has been sanitized locally, but is not yet uploaded. A final privacy review is required before changing repository visibility.
+**Current status:** **Thirteen screenshots** have been uploaded and linked in the private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), and WEB-004 (four). A final privacy review is required before changing repository visibility.
 
 ## Evidence inventory and upload status
 
@@ -23,9 +23,9 @@
 | [`10-dom-html-rendering.png`](10-dom-html-rendering.png) | Benign HTML is inserted as an element inside `span#searchValue` | Uploaded and linked |
 | [`11-dom-xss-execution.png`](11-dom-xss-execution.png) | JavaScript alert `WEB004` and `<img onerror>` in DOM | Uploaded and linked |
 | [`12-dom-xss-repeat.png`](12-dom-xss-repeat.png) | Repeated execution produces the same alert | Uploaded and linked |
-| `13-burp-repeater-api-baseline.png` | Burp `q=LABXSS2026` request and `200 OK`, `data: []` response | Prepared locally; upload pending |
+| [`13-burp-repeater-api-baseline.png`](13-burp-repeater-api-baseline.png) | Burp `q=LABXSS2026` request and `200 OK`, `data: []` response | Uploaded and linked |
 
-The Burp baseline is supplementary: it documents ordinary API behavior, not proof of DOM XSS. The browser-side execution and DOM insertion are documented in images 10–12. The new Repeater screenshot uses cropped excerpts of the **same real request/response**; the portion of the request containing authorization and cookie headers has been removed, not blurred. Do not mark it uploaded until the repository tree confirms it.
+The Burp baseline is supplementary: it documents ordinary API behavior, not proof of DOM XSS. The browser-side execution and DOM insertion are documented in images 10–12. The new Repeater screenshot uses cropped excerpts of the **same real request/response**; the portion of the request containing authorization and cookie headers has been removed, not blurred. Its upload and path have been confirmed in the repository tree.
 
 The five WEB-001 PNGs show the local unauthenticated tests and were inspected for token or cookie exposure during cropping. Perform a final release review of every image before changing repository visibility.
 
