@@ -154,6 +154,6 @@ After restoration, the basket displayed **2 units** and total **3.98**.
 
 The strongest finding is the **negative value being accepted, returned by a later GET, and reflected as a negative basket total**. The zero-quantity test describes additional boundary behavior but is not treated as a standalone security finding. No checkout, payment, credit, or refund manipulation was attempted.
 
-These are **cropped excerpts from real application traffic**, not reconstructed HTTP logs. The repository should remain private until a final privacy and technical review is completed.
+These are **cropped excerpts from real application traffic**, not reconstructed HTTP logs. The repository remains private pending completion of the release review.
 
 See the [full evidence index](../evidence/README.md).
