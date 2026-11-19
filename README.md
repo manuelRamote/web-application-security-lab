@@ -40,11 +40,12 @@ This project documents controlled manual testing of an intentionally vulnerable 
 | HTTP testing tool | Burp Suite Community Edition **2026.8** |
 | Container runtime | Docker |
 | Target application | OWASP Juice Shop (intentionally vulnerable training app) |
+| Container image digest | [`sha256:877fc77b12d7…`](docs/lab-setup.md) (pinned, verified 19 Nov 2026) |
 | Local target | `http://127.0.0.1:3000` |
 | Network exposure | Docker port mapped only to `127.0.0.1` |
 | Test users | Two accounts controlled by the lab operator (A and B) |
 
-The **Juice Shop container image tag/digest is not yet pinned**; subsequent runs may differ if `latest` changes. The hypervisor and exact application version have not been established in this report.
+The original container used the image ID `sha256:634032bbcc50e4d2096734bc6a984265973c966db13933354dc85a9218d54836`. Its matching repository digest is `bkimminich/juice-shop@sha256:877fc77b12d72b42e486eb09b6b1711cc56514306d92006b284e7e7cf076a809`, recorded from Docker on 19 November 2026. The [lab setup](docs/lab-setup.md) uses this pinned digest for future reproducible runs. **This does not establish a semantic Juice Shop release number.** The hypervisor mode and application version remain unverified.
 
 ## Testing approach
 
@@ -170,7 +171,7 @@ The seven uploaded images are integrated with their individual explanations in t
 
 The written findings are supported by the captured tests, but the repository is **not automatically ready for public release**. Before changing visibility:
 
-- Verify the exact OWASP Juice Shop image version or digest on the original Kali VM (instructions in [lab setup](docs/lab-setup.md)). The original image was pulled from `bkimminich/juice-shop:latest`; `latest` is not a reproducible version identifier.
+- **Completed:** Verified the running Docker image ID and matching immutable repository digest on the original Kali VM (19 November 2026). The [lab setup](docs/lab-setup.md) records the full values and a pinned run command; the separate application release number remains unknown.
 - Review **every published screenshot and repository commit history** for bearer tokens, session cookies, credentials, emails, addresses and other information that could remain accessible after publication. The current 20 PNGs have no embedded PNG metadata and their local copies match the GitHub blobs.
 - Recheck the status and limitations of each finding. WEB-002 is **not** confirmed plaintext-password exposure and WEB-003 is **not** a confirmed IDOR. WEB-005 does **not** claim successful checkout with a negative amount.
 - Verify repository description, social preview and README rendering before sharing on GitHub or LinkedIn.
