@@ -1,5 +1,7 @@
 # Web Application Security Assessment — OWASP Juice Shop
 
+![Web Application Security Lab — OWASP Juice Shop, Burp Suite, Kali Linux, Docker and confirmed security findings](assets/web-application-security-lab-cover.jpg)
+
 ![Status](https://img.shields.io/badge/Status-Under%20Review-0969da?style=flat-square)
 ![Focus](https://img.shields.io/badge/Focus-Web%20App%20Security-6f42c1?style=flat-square)
 ![Tools](https://img.shields.io/badge/Tools-Burp%20Suite%20%7C%20Kali%20Linux-555?style=flat-square)
