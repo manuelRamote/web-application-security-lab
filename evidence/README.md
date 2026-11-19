@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** **Twenty screenshots** are uploaded and linked in this private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), WEB-004 (four), and WEB-005 (seven). All current PNGs have been checked for matching uploaded content and absent PNG metadata, but a final privacy and repository-history check is still required before changing visibility.
+**Current status:** **Twenty screenshots** are uploaded and linked in this private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), WEB-004 (four), and WEB-005 (seven). The 20 uploaded PNGs match the reviewed local files by Git blob hash, contain no embedded PNG text/EXIF chunks, and underwent a visual review. The 55 commits in the current main history were screened for sensitive data on 19 November 2026; no exposed secrets were detected in that review. A final publication decision and manual validation are still pending.
 
 ## Evidence inventory and upload status
 
@@ -53,7 +53,7 @@ The backend persisted a negative quantity and the UI displayed a negative total;
 - [ ] Include only the necessary response fields and HTTP status code for technical explanation.
 - [ ] Verify each redacted output as saved, not merely the original editor preview.
 - [x] Check the 20 currently uploaded PNGs for embedded metadata (none found) and match their Git blob SHA to reviewed local copies.
-- [ ] Inspect Git commit history and exclude raw Burp project files and unredacted exports.
-- [ ] Only publish evidence once the review is complete.
+- [x] Inspect the 55 commits in the current `main` history for raw Burp project files, sensitive text changes and earlier replaced screenshots (reviewed 19 November 2026).
+- [ ] Confirm the cover and GitHub repository settings reflect a **local intentionally vulnerable training lab**, then approve making the repository public.
 
 Never upload live credentials or copy authentic tokens into text documentation. Prefer new short-lived lab sessions when creating publication-ready screenshots.
