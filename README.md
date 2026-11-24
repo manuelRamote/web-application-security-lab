@@ -176,7 +176,7 @@ The written findings are supported by the captured tests, but the repository is 
 - **Completed:** Verified the running Docker image ID and matching immutable repository digest on the original Kali VM (19 November 2026). The [lab setup](docs/lab-setup.md) records the full values and a pinned run command; the separate application release number remains unknown.
 - **Completed (19 November 2026):** Reviewed the current **20 evidence PNGs**, checked their Git blob hashes against the reviewed local images, inspected their visual content and PNG metadata, and screened the **55 commits** in the current `main` history for sensitive material. No exposed credentials or personal contact details were detected in the reviewed material. This is a targeted review, not a guarantee against every possible disclosure; perform a final manual check before making the repository public.
 - Recheck the status and limitations of each finding. WEB-002 is **not** confirmed plaintext-password exposure and WEB-003 is **not** a confirmed IDOR. WEB-005 does **not** claim successful checkout with a negative amount.
-- **Cover artwork requires revision:** its current subtitle says “aplicación web real”, while all tests used a deliberately vulnerable **local training instance**. Use wording that clearly identifies the lab context before publication.
+- **Completed (24 November 2026):** The GitHub cover now explicitly describes the target as a **local controlled lab**. Its access-control panel identifies WEB-003 as a test with no IDOR demonstrated.
 - Add relevant GitHub repository topics (none are currently configured) to improve discoverability.
 - Verify repository description, social preview and README rendering before sharing on GitHub or LinkedIn.
 
