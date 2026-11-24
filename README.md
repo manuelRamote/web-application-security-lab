@@ -2,7 +2,7 @@
 
 ![Web Application Security Lab — OWASP Juice Shop, Burp Suite, Kali Linux, Docker and confirmed security findings](assets/web-application-security-lab-cover.jpg)
 
-![Status](https://img.shields.io/badge/Status-Under%20Review-0969da?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Published-238636?style=flat-square)
 ![Focus](https://img.shields.io/badge/Focus-Web%20App%20Security-6f42c1?style=flat-square)
 ![Tools](https://img.shields.io/badge/Tools-Burp%20Suite%20%7C%20Kali%20Linux-555?style=flat-square)
 
@@ -10,7 +10,7 @@
 
 This project documents controlled manual testing of an intentionally vulnerable web application. The objectives are to analyze HTTP requests, validate security issues with repeatable tests, evaluate access controls, and produce technically accurate reports with remediation guidance.
 
-> **Publication status:** Five investigations and **20 reviewed evidence screenshots** are documented. The repository remains **private** while final release checks are completed. All tests targeted a locally hosted intentionally vulnerable application; no production systems or third-party accounts were tested.
+> **Publication status:** This repository is **public**. It documents five investigations supported by **20 reviewed evidence screenshots**. All tests targeted an intentionally vulnerable application hosted locally; no production systems or third-party accounts were tested.
 
 ## At a glance
 
@@ -171,22 +171,22 @@ The seven uploaded images are integrated with their individual explanations in t
 
 ## Publication and reproducibility checks
 
-The written findings are supported by the captured tests, but the repository is **not automatically ready for public release**. Before changing visibility:
+The written findings are supported by captured tests. The repository was made **public on 24 November 2026**. The following checks record its preparation and recommended ongoing maintenance:
 
 - **Completed:** Verified the running Docker image ID and matching immutable repository digest on the original Kali VM (19 November 2026). The [lab setup](docs/lab-setup.md) records the full values and a pinned run command; the separate application release number remains unknown.
-- **Completed (19 November 2026):** Reviewed the current **20 evidence PNGs**, checked their Git blob hashes against the reviewed local images, inspected their visual content and PNG metadata, and screened the **55 commits** in the current `main` history for sensitive material. No exposed credentials or personal contact details were detected in the reviewed material. This is a targeted review, not a guarantee against every possible disclosure; perform a final manual check before making the repository public.
+- **Completed (before publication):** The **20 evidence PNGs** were matched to reviewed local images, inspected for sensitive content and PNG metadata; the then-existing **55 commits** were screened for sensitive material. No exposed credentials or personal contact details were detected in that targeted review. New commits and media should undergo the same review.
 - Recheck the status and limitations of each finding. WEB-002 is **not** confirmed plaintext-password exposure and WEB-003 is **not** a confirmed IDOR. WEB-005 does **not** claim successful checkout with a negative amount.
 - **Completed (24 November 2026):** The GitHub cover now explicitly describes the target as a **local controlled lab**. Its access-control panel identifies WEB-003 as a test with no IDOR demonstrated.
 - Add relevant GitHub repository topics (none are currently configured) to improve discoverability.
-- Verify repository description, social preview and README rendering before sharing on GitHub or LinkedIn.
+- **Publication:** GitHub visibility is public (verified 24 November 2026). A Social Preview was configured by the repository owner; verify its appearance in external link previews before sharing on LinkedIn.
 
 ## Scope and responsible handling
 
 All requests target a deliberately vulnerable application running **locally**, and all accounts are controlled by the operator. Do not direct these tests at third-party applications without explicit authorization.
 
-Raw proxy logs, JWTs, cookies, credentials, user addresses, and unsanitized screenshots must **not** be committed. Keep the repository private until the evidence is reviewed.
+Raw proxy logs, JWTs, cookies, credentials, user addresses, and unsanitized screenshots must **not** be committed. Apply the same redaction and review standards to all future contributions to this public repository.
 
 ---
 
-*Independent educational project · OWASP Juice Shop · Burp Suite Community · Private pending release review.*
+*Independent educational project · OWASP Juice Shop · Burp Suite Community · Public technical portfolio.*
 
