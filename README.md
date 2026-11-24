@@ -177,7 +177,7 @@ The written findings are supported by captured tests. The repository was made **
 - **Completed (before publication):** The **20 evidence PNGs** were matched to reviewed local images, inspected for sensitive content and PNG metadata; the then-existing **55 commits** were screened for sensitive material. No exposed credentials or personal contact details were detected in that targeted review. New commits and media should undergo the same review.
 - Recheck the status and limitations of each finding. WEB-002 is **not** confirmed plaintext-password exposure and WEB-003 is **not** a confirmed IDOR. WEB-005 does **not** claim successful checkout with a negative amount.
 - **Completed (24 November 2026):** The GitHub cover now explicitly describes the target as a **local controlled lab**. Its access-control panel identifies WEB-003 as a test with no IDOR demonstrated.
-- Add relevant GitHub repository topics (none are currently configured) to improve discoverability.
+- Maintain relevant GitHub repository topics reflecting the tested technologies and documented findings, so the public project remains discoverable.
 - **Publication:** GitHub visibility is public (verified 24 November 2026). A Social Preview was configured by the repository owner; verify its appearance in external link previews before sharing on LinkedIn.
 
 ## Scope and responsible handling
