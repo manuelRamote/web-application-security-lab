@@ -1,6 +1,6 @@
 # Evidence — Upload and redaction checklist
 
-**Current status:** **Twenty screenshots** are uploaded and linked in this private repository: WEB-001 (five), WEB-002 (two), WEB-003 (two), WEB-004 (four), and WEB-005 (seven). The 20 uploaded PNGs match the reviewed local files by Git blob hash, contain no embedded PNG text/EXIF chunks, and underwent a visual review. The 55 commits in the current main history were screened for sensitive data on 19 November 2026; no exposed secrets were detected in that review. A final publication decision and manual validation are still pending.
+**Current status:** **Twenty screenshots** are uploaded and linked in this **public repository**: WEB-001 (five), WEB-002 (two), WEB-003 (two), WEB-004 (four), and WEB-005 (seven). The images were compared with reviewed local copies and inspected for sensitive content and PNG metadata before publication. The then-existing 55 commits were screened for sensitive material; no exposed secrets were detected in that targeted review. Future changes must be reviewed before upload.
 
 ## Evidence inventory and upload status
 
@@ -27,7 +27,7 @@
 
 The Burp baseline is supplementary: it documents ordinary API behavior, not proof of DOM XSS. The browser-side execution and DOM insertion are documented in images 10–12. The new Repeater screenshot uses cropped excerpts of the **same real request/response**; the portion of the request containing authorization and cookie headers has been removed, not blurred. Its upload and path have been confirmed in the repository tree.
 
-The five WEB-001 PNGs document local tests and were inspected for exposed token or cookie values during preparation; the evidence is not proof that every historical version or screenshot is free of sensitive data. Perform a final release review of every image before changing repository visibility.
+The five WEB-001 PNGs document local tests and were checked for tokens and cookies before publication. These checks do not guarantee that every possible disclosure was detected; review any future replacement image carefully.
 
 ### WEB-005 — Basket quantity manipulation
 
@@ -43,7 +43,7 @@ The five WEB-001 PNGs document local tests and were inspected for exposed token 
 | [`19-restored-quantity-put.png`](19-restored-quantity-put.png) | Quantity 2 restored through API | Uploaded and linked |
 | [`20-restored-basket-ui.png`](20-restored-basket-ui.png) | Basket returned to two units, total 3.98 | Uploaded and linked |
 
-The backend persisted a negative quantity and the UI displayed a negative total; no negative-value checkout or payment was attempted. Zero-value handling is documented as a boundary behavior, not automatically a vulnerability. The images were reviewed prior to upload. Check repository-wide exposure again before public release.
+The backend persisted a negative quantity and the UI displayed a negative total; no negative-value checkout or payment was attempted. Zero-value handling is documented as a boundary behavior, not automatically a vulnerability. The images were reviewed before publication.
 
 ## Privacy checklist
 
@@ -54,6 +54,6 @@ The backend persisted a negative quantity and the UI displayed a negative total;
 - [ ] Verify each redacted output as saved, not merely the original editor preview.
 - [x] Check the 20 currently uploaded PNGs for embedded metadata (none found) and match their Git blob SHA to reviewed local copies.
 - [x] Inspect the 55 commits in the current `main` history for raw Burp project files, sensitive text changes and earlier replaced screenshots (reviewed 19 November 2026).
-- [ ] Confirm the cover and GitHub repository settings reflect a **local intentionally vulnerable training lab**, then approve making the repository public.
+- [x] Confirm the cover identifies a local controlled training lab and the repository has been made public (24 November 2026).
 
 Never upload live credentials or copy authentic tokens into text documentation. Prefer new short-lived lab sessions when creating publication-ready screenshots.
