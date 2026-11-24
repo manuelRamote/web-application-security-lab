@@ -106,7 +106,7 @@ A successful `PUT` by the item owner does **not** indicate a broken authorizatio
 
 ## Verified screenshots — original Burp and browser evidence
 
-All seven images below have been uploaded to the private repository and verified by filename. The user reviewed the sanitized images before uploading them. Burp excerpts omit authentication-bearing header sections; browser UI images omit the lab-account email.
+All seven images below have been uploaded to the public repository and verified by filename. The user reviewed the sanitized images before uploading them. Burp excerpts omit authentication-bearing header sections; browser UI images omit the lab-account email.
 
 ### 14 — API accepts a negative quantity
 
@@ -154,6 +154,6 @@ After restoration, the basket displayed **2 units** and total **3.98**.
 
 The strongest finding is the **negative value being accepted, returned by a later GET, and reflected as a negative basket total**. The zero-quantity test describes additional boundary behavior but is not treated as a standalone security finding. No checkout, payment, credit, or refund manipulation was attempted.
 
-These are **cropped excerpts from real application traffic**, not reconstructed HTTP logs. The repository remains private pending completion of the release review.
+These are **cropped excerpts from real application traffic**, not reconstructed HTTP logs. The report and sanitized screenshots are published as a local educational case study.
 
 See the [full evidence index](../evidence/README.md).
