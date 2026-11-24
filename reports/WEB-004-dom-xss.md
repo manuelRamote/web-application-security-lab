@@ -99,4 +99,4 @@ This is a **normal API-response baseline**, not proof of XSS. It also does not c
 
 ![Burp Suite Repeater: normal product-search API baseline with HTTP 200 and empty data array](../evidence/13-burp-repeater-api-baseline.png)
 
-See [evidence index](../evidence/README.md). The repository is still private pending final privacy and publication review.
+See [evidence index](../evidence/README.md). This report and its reviewed screenshots are publicly available as a local training-lab case study.
